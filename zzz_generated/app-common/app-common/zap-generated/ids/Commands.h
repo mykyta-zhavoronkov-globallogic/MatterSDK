@@ -1901,6 +1901,16 @@ static constexpr CommandId Id = 0x00000002;
 } // namespace Commands
 } // namespace SampleMei
 
+namespace AlternativePairing {
+namespace Commands {
+
+namespace Pair {
+static constexpr CommandId Id = 0x00000000;
+} // namespace Pair
+
+} // namespace Commands
+} // namespace AlternativePairing
+
 } // namespace Clusters
 } // namespace app
 } // namespace chip

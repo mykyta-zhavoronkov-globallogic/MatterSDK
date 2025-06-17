@@ -5519,6 +5519,8 @@ public class ClusterWriteMapping {
       writeSampleMeiFlipFlopCommandParams
     );
     writeSampleMeiInteractionInfo.put("writeFlipFlopAttribute", writeSampleMeiFlipFlopAttributeInteractionInfo);
-    writeAttributeMap.put("sampleMei", writeSampleMeiInteractionInfo);return writeAttributeMap;
+    writeAttributeMap.put("sampleMei", writeSampleMeiInteractionInfo);
+    Map<String, InteractionInfo> writeAlternativePairingInteractionInfo = new LinkedHashMap<>();
+    writeAttributeMap.put("alternativePairing", writeAlternativePairingInteractionInfo);return writeAttributeMap;
   }
 }

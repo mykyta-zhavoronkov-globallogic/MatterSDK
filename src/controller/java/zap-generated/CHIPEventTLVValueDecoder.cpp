@@ -8220,6 +8220,16 @@ jobject DecodeEventValue(const app::ConcreteEventPath & aPath, TLV::TLVReader & 
         }
         break;
     }
+    case app::Clusters::AlternativePairing::Id: {
+        using namespace app::Clusters::AlternativePairing;
+        switch (aPath.mEventId)
+        {
+        default:
+            *aError = CHIP_ERROR_IM_MALFORMED_EVENT_PATH_IB;
+            break;
+        }
+        break;
+    }
     default:
         *aError = CHIP_ERROR_IM_MALFORMED_EVENT_PATH_IB;
         break;

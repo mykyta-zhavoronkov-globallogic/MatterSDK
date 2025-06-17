@@ -369,6 +369,9 @@ NSString * MTRClusterNameForID(MTRClusterIDType clusterID)
     case MTRClusterIDTypeSampleMEIID:
         result = @"SampleMEI";
         break;
+    case MTRClusterIDTypeAlternativePairingID:
+        result = @"AlternativePairing";
+        break;
 
     default:
         result = [NSString stringWithFormat:@"<Unknown clusterID %d>", clusterID];
@@ -8798,6 +8801,44 @@ NSString * MTRAttributeNameForID(MTRClusterIDType clusterID, MTRAttributeIDType 
             break;
 
         case MTRAttributeIDTypeClusterSampleMEIAttributeClusterRevisionID:
+            result = @"ClusterRevision";
+            break;
+
+        default:
+            result = [NSString stringWithFormat:@"<Unknown attributeID %d>", attributeID];
+            break;
+        }
+
+    case MTRClusterIDTypeAlternativePairingID:
+
+        switch (attributeID) {
+
+            // Cluster AlternativePairing attributes
+        case MTRAttributeIDTypeClusterAlternativePairingAttributeDevicesCountID:
+            result = @"DevicesCount";
+            break;
+
+        case MTRAttributeIDTypeClusterAlternativePairingAttributeGeneratedCommandListID:
+            result = @"GeneratedCommandList";
+            break;
+
+        case MTRAttributeIDTypeClusterAlternativePairingAttributeAcceptedCommandListID:
+            result = @"AcceptedCommandList";
+            break;
+
+        case MTRAttributeIDTypeClusterAlternativePairingAttributeEventListID:
+            result = @"EventList";
+            break;
+
+        case MTRAttributeIDTypeClusterAlternativePairingAttributeAttributeListID:
+            result = @"AttributeList";
+            break;
+
+        case MTRAttributeIDTypeClusterAlternativePairingAttributeFeatureMapID:
+            result = @"FeatureMap";
+            break;
+
+        case MTRAttributeIDTypeClusterAlternativePairingAttributeClusterRevisionID:
             result = @"ClusterRevision";
             break;
 

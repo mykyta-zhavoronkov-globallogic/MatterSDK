@@ -3,6 +3,7 @@
    <xi:include href="chip/access-control-cluster.xml" />
    <xi:include href="chip/account-login-cluster.xml" />
    <xi:include href="chip/administrator-commissioning-cluster.xml" />
+   <xi:include href="chip/alternative-pairing.xml" />
    <xi:include href="chip/air-quality-cluster.xml" />
    <xi:include href="chip/application-basic-cluster.xml" />
    <xi:include href="chip/application-launcher-cluster.xml" />

@@ -4888,6 +4888,8 @@ enum class FaultType : uint8_t
 
 namespace SampleMei {} // namespace SampleMei
 
+namespace AlternativePairing {} // namespace AlternativePairing
+
 } // namespace Clusters
 } // namespace app
 } // namespace chip

@@ -379,6 +379,9 @@ static constexpr ClusterId Id = 0xFFF1FC06;
 namespace SampleMei {
 static constexpr ClusterId Id = 0xFFF1FC20;
 } // namespace SampleMei
+namespace AlternativePairing {
+static constexpr ClusterId Id = 0xFFF3FC3C;
+} // namespace AlternativePairing
 
 } // namespace Clusters
 } // namespace app
