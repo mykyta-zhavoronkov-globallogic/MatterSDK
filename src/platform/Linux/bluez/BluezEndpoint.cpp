@@ -189,11 +189,11 @@ gboolean BluezEndpoint::BluezCharacteristicAcquireNotify(BluezGattCharacteristic
     }
 
     conn->SetupNotifyHandler(fds[0], isAdditionalAdvertising);
-    bluez_gatt_characteristic1_set_notify_acquired(aChar, TRUE);
+    // bluez_gatt_characteristic1_set_notify_acquired(aChar, TRUE);
     conn->SetNotifyAcquired(true);
 
     GUnixFDList * fdList = g_unix_fd_list_new_from_array(&fds[1], 1);
-    bluez_gatt_characteristic1_complete_acquire_notify(aChar, aInvocation, fdList, g_variant_new_handle(0), conn->GetMTU());
+    // bluez_gatt_characteristic1_complete_acquire_notify(aChar, aInvocation, fdList, g_variant_new_handle(0), conn->GetMTU());
     g_object_unref(fdList);
 
     BLEManagerImpl::HandleTXCharCCCDWrite(conn);
