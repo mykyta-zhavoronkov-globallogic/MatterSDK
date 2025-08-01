@@ -5,6 +5,7 @@
         "ACTIONS_CLUSTER": [],
         "ACTIVATED_CARBON_FILTER_MONITORING_CLUSTER": [],
         "ADMINISTRATOR_COMMISSIONING_CLUSTER": [],
+        "ALTERNATIVE_PAIRING_CLUSTER" : [],
         "AIR_QUALITY_CLUSTER": [],
         "ALARM_CLUSTER": [],
         "APPLICATION_BASIC_CLUSTER": [],
@@ -165,6 +166,7 @@
         "ADMINISTRATOR_COMMISSIONING_CLUSTER": [
             "administrator-commissioning-server"
         ],
+        "ALTERNATIVE_PAIRING_CLUSTER" : ["alternative-pairing-server"],
         "AIR_QUALITY_CLUSTER": ["air-quality-server"],
         "ALARM_CLUSTER": [],
         "APPLICATION_BASIC_CLUSTER": ["application-basic-server"],

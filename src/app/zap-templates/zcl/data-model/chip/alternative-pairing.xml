@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<configurator>
+
+  <domain name="CHIP"/>
+
+  <cluster apiMaturity="internal">
+
+    <domain>General</domain>
+    <name>Alternative Pairing</name>
+    <code>0xFFF3FC3C</code>
+    <define>ALTERNATIVE_PAIRING_CLUSTER</define>
+
+    <description>The Alternative Pairing cluster is meant to be used to pair other devices with node id.</description>
+
+    <!-- Attributes -->
+    <attribute side="server" code="0x0" define="ALTERNATIVE_PAIRING_DEVICES_COUNT" type="int32u" default="0x00" min="0x00" max="0xFFFF" writable="false" optional="false">DevicesCount</attribute>
+
+    <!-- Commands -->
+    <command source="client" code="0x00" name="Pair" optional="false" isFabricScoped="true">
+      <description>Pair a device with the given node id.</description>
+      <access op="invoke" privilege="administer" />
+      <arg name="NodeId" type="node_id"/>
+    </command>
+
+  </cluster>
+
+</configurator>

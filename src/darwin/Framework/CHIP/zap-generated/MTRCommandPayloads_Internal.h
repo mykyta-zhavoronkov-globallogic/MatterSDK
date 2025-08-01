@@ -2962,6 +2962,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface MTRAlternativePairingClusterPairParams (InternalMethods)
+
+- (NSDictionary<NSString *, id> * _Nullable)_encodeAsDataValue:(NSError * __autoreleasing *)error;
+
+@end
+
 // Make sure that MTRBasicClusterMfgSpecificPingParams has _encodeAsDataValue just so it compiles.
 @interface MTRBasicClusterMfgSpecificPingParams (InternalMethods)
 - (NSDictionary<NSString *, id> * _Nullable)_encodeAsDataValue:(NSError * __autoreleasing *)error;

@@ -20385,6 +20385,76 @@ public class ClusterReadMapping {
      
        return result;
     }
+    private static Map<String, InteractionInfo> readAlternativePairingInteractionInfo() {
+       Map<String, InteractionInfo> result = new LinkedHashMap<>();Map<String, CommandParameterInfo> readAlternativePairingDevicesCountCommandParams = new LinkedHashMap<String, CommandParameterInfo>();
+        InteractionInfo readAlternativePairingDevicesCountAttributeInteractionInfo = new InteractionInfo(
+          (cluster, callback, commandArguments) -> {
+            ((ChipClusters.AlternativePairingCluster) cluster).readDevicesCountAttribute(
+              (ChipClusters.LongAttributeCallback) callback
+            );
+          },
+          () -> new ClusterInfoMapping.DelegatedLongAttributeCallback(),
+          readAlternativePairingDevicesCountCommandParams
+        );
+        result.put("readDevicesCountAttribute", readAlternativePairingDevicesCountAttributeInteractionInfo);
+     Map<String, CommandParameterInfo> readAlternativePairingGeneratedCommandListCommandParams = new LinkedHashMap<String, CommandParameterInfo>();
+        InteractionInfo readAlternativePairingGeneratedCommandListAttributeInteractionInfo = new InteractionInfo(
+          (cluster, callback, commandArguments) -> {
+            ((ChipClusters.AlternativePairingCluster) cluster).readGeneratedCommandListAttribute(
+              (ChipClusters.AlternativePairingCluster.GeneratedCommandListAttributeCallback) callback
+            );
+          },
+          () -> new ClusterInfoMapping.DelegatedAlternativePairingClusterGeneratedCommandListAttributeCallback(),
+          readAlternativePairingGeneratedCommandListCommandParams
+        );
+        result.put("readGeneratedCommandListAttribute", readAlternativePairingGeneratedCommandListAttributeInteractionInfo);
+     Map<String, CommandParameterInfo> readAlternativePairingAcceptedCommandListCommandParams = new LinkedHashMap<String, CommandParameterInfo>();
+        InteractionInfo readAlternativePairingAcceptedCommandListAttributeInteractionInfo = new InteractionInfo(
+          (cluster, callback, commandArguments) -> {
+            ((ChipClusters.AlternativePairingCluster) cluster).readAcceptedCommandListAttribute(
+              (ChipClusters.AlternativePairingCluster.AcceptedCommandListAttributeCallback) callback
+            );
+          },
+          () -> new ClusterInfoMapping.DelegatedAlternativePairingClusterAcceptedCommandListAttributeCallback(),
+          readAlternativePairingAcceptedCommandListCommandParams
+        );
+        result.put("readAcceptedCommandListAttribute", readAlternativePairingAcceptedCommandListAttributeInteractionInfo);
+     Map<String, CommandParameterInfo> readAlternativePairingAttributeListCommandParams = new LinkedHashMap<String, CommandParameterInfo>();
+        InteractionInfo readAlternativePairingAttributeListAttributeInteractionInfo = new InteractionInfo(
+          (cluster, callback, commandArguments) -> {
+            ((ChipClusters.AlternativePairingCluster) cluster).readAttributeListAttribute(
+              (ChipClusters.AlternativePairingCluster.AttributeListAttributeCallback) callback
+            );
+          },
+          () -> new ClusterInfoMapping.DelegatedAlternativePairingClusterAttributeListAttributeCallback(),
+          readAlternativePairingAttributeListCommandParams
+        );
+        result.put("readAttributeListAttribute", readAlternativePairingAttributeListAttributeInteractionInfo);
+     Map<String, CommandParameterInfo> readAlternativePairingFeatureMapCommandParams = new LinkedHashMap<String, CommandParameterInfo>();
+        InteractionInfo readAlternativePairingFeatureMapAttributeInteractionInfo = new InteractionInfo(
+          (cluster, callback, commandArguments) -> {
+            ((ChipClusters.AlternativePairingCluster) cluster).readFeatureMapAttribute(
+              (ChipClusters.LongAttributeCallback) callback
+            );
+          },
+          () -> new ClusterInfoMapping.DelegatedLongAttributeCallback(),
+          readAlternativePairingFeatureMapCommandParams
+        );
+        result.put("readFeatureMapAttribute", readAlternativePairingFeatureMapAttributeInteractionInfo);
+     Map<String, CommandParameterInfo> readAlternativePairingClusterRevisionCommandParams = new LinkedHashMap<String, CommandParameterInfo>();
+        InteractionInfo readAlternativePairingClusterRevisionAttributeInteractionInfo = new InteractionInfo(
+          (cluster, callback, commandArguments) -> {
+            ((ChipClusters.AlternativePairingCluster) cluster).readClusterRevisionAttribute(
+              (ChipClusters.IntegerAttributeCallback) callback
+            );
+          },
+          () -> new ClusterInfoMapping.DelegatedIntegerAttributeCallback(),
+          readAlternativePairingClusterRevisionCommandParams
+        );
+        result.put("readClusterRevisionAttribute", readAlternativePairingClusterRevisionAttributeInteractionInfo);
+     
+       return result;
+    }
     @SuppressWarnings("serial")
     public Map<String, Map<String, InteractionInfo>> getReadAttributeMap() {
 
@@ -20528,7 +20598,8 @@ public class ClusterReadMapping {
             put("commodityMetering", readCommodityMeteringInteractionInfo());
             put("unitTesting", readUnitTestingInteractionInfo());
             put("faultInjection", readFaultInjectionInteractionInfo());
-            put("sampleMei", readSampleMeiInteractionInfo());}};
+            put("sampleMei", readSampleMeiInteractionInfo());
+            put("alternativePairing", readAlternativePairingInteractionInfo());}};
     }
 }
 

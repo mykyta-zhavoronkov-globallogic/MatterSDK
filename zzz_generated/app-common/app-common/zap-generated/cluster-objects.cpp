@@ -47,6 +47,10 @@
 #include <clusters/AirQuality/Commands.ipp>
 #include <clusters/AirQuality/Events.ipp>
 #include <clusters/AirQuality/Structs.ipp>
+#include <clusters/AlternativePairing/Attributes.ipp>
+#include <clusters/AlternativePairing/Commands.ipp>
+#include <clusters/AlternativePairing/Events.ipp>
+#include <clusters/AlternativePairing/Structs.ipp>
 #include <clusters/ApplicationBasic/Attributes.ipp>
 #include <clusters/ApplicationBasic/Commands.ipp>
 #include <clusters/ApplicationBasic/Events.ipp>
@@ -1430,6 +1434,15 @@ bool CommandIsFabricScoped(ClusterId aCluster, CommandId aCommand)
     case Clusters::SampleMei::Id: {
         switch (aCommand)
         {
+        default:
+            return false;
+        }
+    }
+    case Clusters::AlternativePairing::Id: {
+        switch (aCommand)
+        {
+        case Clusters::AlternativePairing::Commands::Pair::Id:
+            return true;
         default:
             return false;
         }

@@ -22407,6 +22407,69 @@ public class ClusterInfoMapping {
     }
   }
 
+  public static class DelegatedAlternativePairingClusterGeneratedCommandListAttributeCallback implements ChipClusters.AlternativePairingCluster.GeneratedCommandListAttributeCallback, DelegatedClusterCallback {
+    private ClusterCommandCallback callback;
+    @Override
+    public void setCallbackDelegate(ClusterCommandCallback callback) {
+      this.callback = callback;
+    }
+
+    @Override
+    public void onSuccess(List<Long> valueList) {
+      Map<CommandResponseInfo, Object> responseValues = new LinkedHashMap<>();
+      CommandResponseInfo commandResponseInfo = new CommandResponseInfo("valueList", "List<Long>");
+      responseValues.put(commandResponseInfo, valueList);
+      callback.onSuccess(responseValues);
+    }
+
+    @Override
+    public void onError(Exception ex) {
+      callback.onFailure(ex);
+    }
+  }
+
+  public static class DelegatedAlternativePairingClusterAcceptedCommandListAttributeCallback implements ChipClusters.AlternativePairingCluster.AcceptedCommandListAttributeCallback, DelegatedClusterCallback {
+    private ClusterCommandCallback callback;
+    @Override
+    public void setCallbackDelegate(ClusterCommandCallback callback) {
+      this.callback = callback;
+    }
+
+    @Override
+    public void onSuccess(List<Long> valueList) {
+      Map<CommandResponseInfo, Object> responseValues = new LinkedHashMap<>();
+      CommandResponseInfo commandResponseInfo = new CommandResponseInfo("valueList", "List<Long>");
+      responseValues.put(commandResponseInfo, valueList);
+      callback.onSuccess(responseValues);
+    }
+
+    @Override
+    public void onError(Exception ex) {
+      callback.onFailure(ex);
+    }
+  }
+
+  public static class DelegatedAlternativePairingClusterAttributeListAttributeCallback implements ChipClusters.AlternativePairingCluster.AttributeListAttributeCallback, DelegatedClusterCallback {
+    private ClusterCommandCallback callback;
+    @Override
+    public void setCallbackDelegate(ClusterCommandCallback callback) {
+      this.callback = callback;
+    }
+
+    @Override
+    public void onSuccess(List<Long> valueList) {
+      Map<CommandResponseInfo, Object> responseValues = new LinkedHashMap<>();
+      CommandResponseInfo commandResponseInfo = new CommandResponseInfo("valueList", "List<Long>");
+      responseValues.put(commandResponseInfo, valueList);
+      callback.onSuccess(responseValues);
+    }
+
+    @Override
+    public void onError(Exception ex) {
+      callback.onFailure(ex);
+    }
+  }
+
 
   public Map<String, ClusterInfo> getClusterMap() {
     Map<String, ClusterInfo> clusterMap = initializeClusterMap();
@@ -22982,6 +23045,10 @@ public class ClusterInfoMapping {
       (ptr, endpointId) -> new ChipClusters.SampleMeiCluster(ptr, endpointId), new HashMap<>());
     clusterMap.put("sampleMei", sampleMeiClusterInfo);
 
+    ClusterInfo alternativePairingClusterInfo = new ClusterInfo(
+      (ptr, endpointId) -> new ChipClusters.AlternativePairingCluster(ptr, endpointId), new HashMap<>());
+    clusterMap.put("alternativePairing", alternativePairingClusterInfo);
+
     return clusterMap;
   }
 
@@ -23126,6 +23193,7 @@ public class ClusterInfoMapping {
     destination.get("unitTesting").combineCommands(source.get("unitTesting"));
     destination.get("faultInjection").combineCommands(source.get("faultInjection"));
     destination.get("sampleMei").combineCommands(source.get("sampleMei"));
+    destination.get("alternativePairing").combineCommands(source.get("alternativePairing"));
   }
 
  @SuppressWarnings("unchecked")
@@ -32045,6 +32113,27 @@ public class ClusterInfoMapping {
     sampleMeiClusterInteractionInfoMap.put("addArguments", sampleMeiaddArgumentsInteractionInfo);
 
     commandMap.put("sampleMei", sampleMeiClusterInteractionInfoMap);
+
+    Map<String, InteractionInfo> alternativePairingClusterInteractionInfoMap = new LinkedHashMap<>();
+
+    Map<String, CommandParameterInfo> alternativePairingpairCommandParams = new LinkedHashMap<String, CommandParameterInfo>();
+
+    CommandParameterInfo alternativePairingpairnodeIdCommandParameterInfo = new CommandParameterInfo("nodeId", Long.class, Long.class);
+    alternativePairingpairCommandParams.put("nodeId",alternativePairingpairnodeIdCommandParameterInfo);
+    InteractionInfo alternativePairingpairInteractionInfo = new InteractionInfo(
+      (cluster, callback, commandArguments) -> {
+        ((ChipClusters.AlternativePairingCluster) cluster)
+        .pair((DefaultClusterCallback) callback
+        , (Long)
+        commandArguments.get("nodeId")
+        );
+      },
+      () -> new DelegatedDefaultClusterCallback(),
+        alternativePairingpairCommandParams
+    );
+    alternativePairingClusterInteractionInfoMap.put("pair", alternativePairingpairInteractionInfo);
+
+    commandMap.put("alternativePairing", alternativePairingClusterInteractionInfoMap);
 
     return commandMap;
   }

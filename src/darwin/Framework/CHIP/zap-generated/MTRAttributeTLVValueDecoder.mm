@@ -22370,6 +22370,30 @@ static id _Nullable DecodeAttributeValueForSampleMEICluster(AttributeId aAttribu
     *aError = CHIP_ERROR_IM_MALFORMED_ATTRIBUTE_PATH_IB;
     return nil;
 }
+static id _Nullable DecodeAttributeValueForAlternativePairingCluster(AttributeId aAttributeId, TLV::TLVReader & aReader, CHIP_ERROR * aError)
+{
+    using namespace Clusters::AlternativePairing;
+    switch (aAttributeId) {
+    case Attributes::DevicesCount::Id: {
+        using TypeInfo = Attributes::DevicesCount::TypeInfo;
+        TypeInfo::DecodableType cppValue;
+        *aError = DataModel::Decode(aReader, cppValue);
+        if (*aError != CHIP_NO_ERROR) {
+            return nil;
+        }
+        NSNumber * _Nonnull value;
+        value = [NSNumber numberWithUnsignedInt:cppValue];
+        return value;
+    }
+    default: {
+        // Not a known AlternativePairing attribute.
+        break;
+    }
+    }
+
+    *aError = CHIP_ERROR_IM_MALFORMED_ATTRIBUTE_PATH_IB;
+    return nil;
+}
 
 id _Nullable MTRDecodeAttributeValue(const ConcreteAttributePath & aPath, TLV::TLVReader & aReader, CHIP_ERROR * aError)
 {
@@ -22785,6 +22809,9 @@ id _Nullable MTRDecodeAttributeValue(const ConcreteAttributePath & aPath, TLV::T
     }
     case Clusters::SampleMei::Id: {
         return DecodeAttributeValueForSampleMEICluster(aPath.mAttributeId, aReader, aError);
+    }
+    case Clusters::AlternativePairing::Id: {
+        return DecodeAttributeValueForAlternativePairingCluster(aPath.mAttributeId, aReader, aError);
     }
     default: {
         break;

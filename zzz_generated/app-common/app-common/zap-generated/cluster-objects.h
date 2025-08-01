@@ -47,6 +47,10 @@
 #include <clusters/AirQuality/Commands.h>
 #include <clusters/AirQuality/Events.h>
 #include <clusters/AirQuality/Structs.h>
+#include <clusters/AlternativePairing/Attributes.h>
+#include <clusters/AlternativePairing/Commands.h>
+#include <clusters/AlternativePairing/Events.h>
+#include <clusters/AlternativePairing/Structs.h>
 #include <clusters/ApplicationBasic/Attributes.h>
 #include <clusters/ApplicationBasic/Commands.h>
 #include <clusters/ApplicationBasic/Events.h>

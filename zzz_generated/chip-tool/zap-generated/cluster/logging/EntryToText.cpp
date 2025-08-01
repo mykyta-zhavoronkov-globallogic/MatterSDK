@@ -305,6 +305,8 @@ char const * ClusterIdToText(chip::ClusterId id)
         return "FaultInjection";
     case chip::app::Clusters::SampleMei::Id:
         return "SampleMei";
+    case chip::app::Clusters::AlternativePairing::Id:
+        return "AlternativePairing";
     default:
         return "Unknown";
     }
@@ -5002,6 +5004,25 @@ char const * AttributeIdToText(chip::ClusterId cluster, chip::AttributeId id)
             return "Unknown";
         }
     }
+    case chip::app::Clusters::AlternativePairing::Id: {
+        switch (id)
+        {
+        case chip::app::Clusters::AlternativePairing::Attributes::DevicesCount::Id:
+            return "DevicesCount";
+        case chip::app::Clusters::AlternativePairing::Attributes::GeneratedCommandList::Id:
+            return "GeneratedCommandList";
+        case chip::app::Clusters::AlternativePairing::Attributes::AcceptedCommandList::Id:
+            return "AcceptedCommandList";
+        case chip::app::Clusters::AlternativePairing::Attributes::AttributeList::Id:
+            return "AttributeList";
+        case chip::app::Clusters::AlternativePairing::Attributes::FeatureMap::Id:
+            return "FeatureMap";
+        case chip::app::Clusters::AlternativePairing::Attributes::ClusterRevision::Id:
+            return "ClusterRevision";
+        default:
+            return "Unknown";
+        }
+    }
     default:
         return "Unknown";
     }
@@ -6397,6 +6418,15 @@ char const * AcceptedCommandIdToText(chip::ClusterId cluster, chip::CommandId id
             return "Ping";
         case chip::app::Clusters::SampleMei::Commands::AddArguments::Id:
             return "AddArguments";
+        default:
+            return "Unknown";
+        }
+    }
+    case chip::app::Clusters::AlternativePairing::Id: {
+        switch (id)
+        {
+        case chip::app::Clusters::AlternativePairing::Commands::Pair::Id:
+            return "Pair";
         default:
             return "Unknown";
         }

@@ -11863,3 +11863,22 @@ cluster SampleMei = 4294048800 {
   command AddArguments(AddArgumentsRequest): AddArgumentsResponse = 2;
 }
 
+/** The Alternative Pairing cluster is meant to be used to pair other devices with node id. */
+internal cluster AlternativePairing = 4294179900 {
+  revision 1; // NOTE: Default/not specifically set
+
+  readonly attribute int32u devicesCount = 0;
+  readonly attribute command_id generatedCommandList[] = 65528;
+  readonly attribute command_id acceptedCommandList[] = 65529;
+  readonly attribute attrib_id attributeList[] = 65531;
+  readonly attribute bitmap32 featureMap = 65532;
+  readonly attribute int16u clusterRevision = 65533;
+
+  request struct PairRequest {
+    node_id nodeId = 0;
+  }
+
+  /** Pair a device with the given node id. */
+  fabric command access(invoke: administer) Pair(PairRequest): DefaultSuccess = 0;
+}
+

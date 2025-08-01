@@ -1334,6 +1334,15 @@ static BOOL CommandNeedsTimedInvokeInSampleMEICluster(AttributeId aAttributeId)
     }
     }
 }
+static BOOL CommandNeedsTimedInvokeInAlternativePairingCluster(AttributeId aAttributeId)
+{
+    using namespace Clusters::AlternativePairing;
+    switch (aAttributeId) {
+    default: {
+        return NO;
+    }
+    }
+}
 
 BOOL MTRCommandNeedsTimedInvoke(NSNumber * _Nonnull aClusterID, NSNumber * _Nonnull aCommandID)
 {
@@ -1748,6 +1757,9 @@ BOOL MTRCommandNeedsTimedInvoke(NSNumber * _Nonnull aClusterID, NSNumber * _Nonn
     }
     case Clusters::SampleMei::Id: {
         return CommandNeedsTimedInvokeInSampleMEICluster(commandID);
+    }
+    case Clusters::AlternativePairing::Id: {
+        return CommandNeedsTimedInvokeInAlternativePairingCluster(commandID);
     }
     default: {
         return NO;

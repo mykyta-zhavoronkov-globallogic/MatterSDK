@@ -1536,8 +1536,7 @@ void ConnectivityManagerImpl::OnNanSubscribeTerminated(guint subscribe_id, gchar
     /*
         Indicate the connection event
     */
-    ChipDeviceEvent event;
-    event.Type = DeviceEventType::kCHIPoWiFiPAFCancelConnect;
+    ChipDeviceEvent event{ .Type = DeviceEventType::kCHIPoWiFiPAFCancelConnect };
     PlatformMgr().PostEventOrDie(&event);
 }
 
