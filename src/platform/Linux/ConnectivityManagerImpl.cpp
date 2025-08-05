@@ -1368,7 +1368,7 @@ void ConnectivityManagerImpl::OnDiscoveryResult(GVariant * discov_info)
     /*
         Set the PAF session information
     */
-    ChipLogProgress(DeviceLayer, "WiFi-PAF: DiscoveryResult, set PafInfo, whose nodeId: %lu", pPafInfo->nodeId);
+    ChipLogProgress(DeviceLayer, "WiFi-PAF: DiscoveryResult, set PafInfo, whose nodeId: %llu", static_cast<unsigned long long>(pPafInfo->nodeId));
     ChipLogProgress(DeviceLayer, "\t (subscribe_id, peer_publish_id): (%u, %u)", subscribe_id, peer_publish_id);
     ChipLogProgress(DeviceLayer, "\t peer_addr: [%02x:%02x:%02x:%02x:%02x:%02x]", peer_addr[0], peer_addr[1], peer_addr[2],
                     peer_addr[3], peer_addr[4], peer_addr[5]);
@@ -1461,7 +1461,7 @@ void ConnectivityManagerImpl::OnReplied(GVariant * reply_info)
     /*
         Set the PAF session information
     */
-    ChipLogProgress(DeviceLayer, "WiFi-PAF: OnReplied, set PafInfo, whose nodeId: %lu", pPafInfo->nodeId);
+    ChipLogProgress(DeviceLayer, "WiFi-PAF: OnReplied, set PafInfo, whose nodeId: %llu", static_cast<unsigned long long>(pPafInfo->nodeId));
     ChipLogProgress(DeviceLayer, "\t (publish_id, peer_subscribe_id): (%u, %u)", publish_id, peer_subscribe_id);
     ChipLogProgress(DeviceLayer, "\t peer_addr: [%02x:%02x:%02x:%02x:%02x:%02x]", peer_addr[0], peer_addr[1], peer_addr[2],
                     peer_addr[3], peer_addr[4], peer_addr[5]);
@@ -1509,7 +1509,7 @@ void ConnectivityManagerImpl::OnNanReceive(GVariant * obj)
     dataValue.reset(value);
 
     auto rxbuf = g_variant_get_fixed_array(dataValue.get(), &bufferLen, sizeof(uint8_t));
-    ChipLogProgress(DeviceLayer, "WiFi-PAF: wpa_supplicant: nan-rx: [len: %lu]", bufferLen);
+    ChipLogProgress(DeviceLayer, "WiFi-PAF: wpa_supplicant: nan-rx: [len: %zu]", bufferLen);
     buf = System::PacketBufferHandle::NewWithData(rxbuf, bufferLen);
 
     // Post an event to the Chip queue to deliver the data into the Chip stack.
@@ -1642,12 +1642,12 @@ CHIP_ERROR ConnectivityManagerImpl::_WiFiPAFCancelIncompleteSubscribe()
 
 CHIP_ERROR ConnectivityManagerImpl::_WiFiPAFSend(const WiFiPAF::WiFiPAFSession & TxInfo, System::PacketBufferHandle && msgBuf)
 {
-    ChipLogProgress(Controller, "WiFi-PAF: sending PAF Follow-up packets, (%lu)", msgBuf->DataLength());
+    ChipLogProgress(Controller, "WiFi-PAF: sending PAF Follow-up packets, (%zu)", msgBuf->DataLength());
     CHIP_ERROR ret = CHIP_NO_ERROR;
 
     if (msgBuf.IsNull())
     {
-        ChipLogError(Controller, "WiFi-PAF: Invalid Packet (%lu)", msgBuf->DataLength());
+        ChipLogError(Controller, "WiFi-PAF: Invalid Packet (%zu)", msgBuf->DataLength());
         return CHIP_ERROR_INVALID_ARGUMENT;
     }
 
@@ -1660,7 +1660,7 @@ CHIP_ERROR ConnectivityManagerImpl::_WiFiPAFSend(const WiFiPAF::WiFiPAFSession &
         if (msgBuf->HasChainedBuffer())
         {
             ret = CHIP_ERROR_OUTBOUND_MESSAGE_TOO_BIG;
-            ChipLogError(Controller, "WiFi-PAF: Outbound message too big (%lu), skip temporally", msgBuf->DataLength());
+            ChipLogError(Controller, "WiFi-PAF: Outbound message too big (%zu), skip temporally", msgBuf->DataLength());
             return ret;
         }
     }
@@ -1694,7 +1694,7 @@ CHIP_ERROR ConnectivityManagerImpl::_WiFiPAFSend(const WiFiPAF::WiFiPAFSession &
     {
         ChipLogError(DeviceLayer, "WiFi-PAF: Failed to send message: %s", err == nullptr ? "unknown error" : err->message);
     }
-    ChipLogProgress(Controller, "WiFi-PAF: Outbound message (%lu) done", msgBuf->DataLength());
+    ChipLogProgress(Controller, "WiFi-PAF: Outbound message (%zu) done", msgBuf->DataLength());
 
     // Post an event to the Chip queue to deliver the data into the Chip stack.
     ChipDeviceEvent event{ .Type = DeviceEventType::kCHIPoWiFiPAFWriteDone };

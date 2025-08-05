@@ -830,8 +830,8 @@ CHIP_ERROR DeviceCommissioner::EstablishPASEConnection(NodeId remoteDeviceId, Re
     {
         if (DeviceLayer::ConnectivityMgr().GetWiFiPAF()->GetWiFiPAFState() != WiFiPAF::State::kConnected)
         {
-            ChipLogProgress(Controller, "WiFi-PAF: Subscribing to the NAN-USD devices, nodeId: %lu",
-                            params.GetPeerAddress().GetRemoteId());
+            ChipLogProgress(Controller, "WiFi-PAF: Subscribing to the NAN-USD devices, nodeId: %llu",
+                            static_cast<unsigned long long>(params.GetPeerAddress().GetRemoteId()));
             mRendezvousParametersForDeviceDiscoveredOverWiFiPAF = params;
             auto nodeId                                         = params.GetPeerAddress().GetRemoteId();
             const SetupDiscriminator connDiscriminator(params.GetSetupDiscriminator().value());
@@ -924,7 +924,7 @@ void DeviceCommissioner::OnWiFiPAFSubscribeComplete(void * appState)
 
     if (nullptr != device && device->GetDeviceTransportType() == Transport::Type::kWiFiPAF)
     {
-        ChipLogProgress(Controller, "WiFi-PAF: Subscription Completed, dev_id = %lu", device->GetDeviceId());
+        ChipLogProgress(Controller, "WiFi-PAF: Subscription Completed, dev_id = %llu", static_cast<unsigned long long>(device->GetDeviceId()));
         auto remoteId = device->GetDeviceId();
         auto params   = self->mRendezvousParametersForDeviceDiscoveredOverWiFiPAF;
 
@@ -941,7 +941,7 @@ void DeviceCommissioner::OnWiFiPAFSubscribeError(void * appState, CHIP_ERROR err
 
     if (nullptr != device && device->GetDeviceTransportType() == Transport::Type::kWiFiPAF)
     {
-        ChipLogError(Controller, "WiFi-PAF: Subscription Error, id = %lu, err = %" CHIP_ERROR_FORMAT, device->GetDeviceId(),
+        ChipLogError(Controller, "WiFi-PAF: Subscription Error, id = %llu, err = %" CHIP_ERROR_FORMAT, static_cast<unsigned long long>(device->GetDeviceId()),
                      err.Format());
         self->ReleaseCommissioneeDevice(device);
         self->mRendezvousParametersForDeviceDiscoveredOverWiFiPAF = RendezvousParameters();

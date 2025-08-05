@@ -446,7 +446,7 @@ void SetUpCodePairer::OnBLEDiscoveryError(CHIP_ERROR err)
 #if CHIP_DEVICE_CONFIG_ENABLE_WIFIPAF
 void SetUpCodePairer::OnDiscoveredDeviceOverWifiPAF()
 {
-    ChipLogProgress(Controller, "Discovered device to be commissioned over Wi-Fi PAF, RemoteId: %lu", mRemoteId);
+    ChipLogProgress(Controller, "Discovered device to be commissioned over Wi-Fi PAF, RemoteId: %llu", static_cast<unsigned long long>(mRemoteId));
 
     mWaitingForDiscovery[kWiFiPAFTransport] = false;
     auto param                              = SetUpCodePairerParameters();

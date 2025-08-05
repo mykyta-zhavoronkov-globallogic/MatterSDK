@@ -250,7 +250,7 @@ CHIP_ERROR DiagnosticDataProviderImpl::GetCurrentHeapUsed(uint64_t & currentHeap
     // Update the maximum heap high watermark if the current heap usage exceeds it.
     if (currentHeapUsed > maxHeapHighWatermark)
     {
-        maxHeapHighWatermark = currentHeapUsed;
+        maxHeapHighWatermark = static_cast<size_t>(currentHeapUsed);
     }
     return CHIP_NO_ERROR;
 #else
