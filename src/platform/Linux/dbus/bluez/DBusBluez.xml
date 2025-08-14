@@ -49,6 +49,8 @@
     <method name="Connect" />
     <property name="Address" type="s" access="read" />
     <property name="Connected" type="b" access="read" />
+    <property name="Name" type="s" access="read" />
+    <property name="Alias" type="s" access="read" />
     <property name="Adapter" type="o" access="read" />
     <property name="ServiceData" type="a{sv}" access="read" />
     <property name="ServicesResolved" type="b" access="read" />
